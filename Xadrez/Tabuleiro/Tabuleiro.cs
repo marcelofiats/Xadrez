@@ -19,5 +19,43 @@ namespace Xadrez.Tabuleiro
         {
             return pecas[linha, coluna];
         }
+
+        public Peca peca(Posicao pos)
+        {
+            return pecas[pos.linha, pos.coluna];
+        }
+
+        public bool existePeca(Posicao pos)
+        {
+            validarPosicao(pos);
+            return peca(pos) != null;
+        }
+
+        public void colocarPeca(Peca peca, Posicao posicao)
+        {
+            if (existePeca(posicao))
+            {
+                throw new TabuleiroException("já existe uma peça nessa posição!");
+            }
+            pecas[posicao.linha, posicao.coluna] = peca;
+            peca.posicao = posicao;
+        }
+
+        public bool posicaoValida(Posicao pos)
+        {
+            if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void validarPosicao(Posicao pos)
+        {
+            if (!posicaoValida(pos))
+            {
+                throw new TabuleiroException("Posição invalida!");
+            }
+        }
     }
 }

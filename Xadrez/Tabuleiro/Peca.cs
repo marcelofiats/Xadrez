@@ -7,9 +7,9 @@
         public int qteMovimento{ get; set; }
         public tabuleiro tab{ get; set; }
 
-        public Peca(Posicao posicao, tabuleiro tab, Cor cor)
+        public Peca(tabuleiro tab, Cor cor)
         {
-            this.posicao = posicao;
+            this.posicao = null;
             this.tab = tab;
             this.cor = cor;
             qteMovimento = 0;

@@ -13,7 +13,7 @@ namespace Xadrez
                 for (int j = 0; j < tab.colunas; j++)
                 {
                     if (tab.peca(i, j) == null)
-                        Console.Write(" _ ");
+                        Console.Write(" - ");
                     else
                         Console.Write(" " + tab.peca(i, j) + " ");
                 }
