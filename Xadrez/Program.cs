@@ -9,9 +9,9 @@ namespace Xadrez
         {
             Posicao P;
 
-            P = new Posicao(3, 4);
+            tabuleiro tab = new tabuleiro(8, 8);
 
-            Console.WriteLine("Posição " + P);
+            Tela.imprimirTabuleiro(tab);
         }
     }
 }
