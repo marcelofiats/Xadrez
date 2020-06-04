@@ -12,8 +12,12 @@
             this.posicao = null;
             this.tab = tab;
             this.cor = cor;
-            qteMovimento = 0;
-            
+            qteMovimento = 0;            
+        }
+
+        public void incrementaQteMovimento()
+        {
+            qteMovimento++;
         }
     }
 }

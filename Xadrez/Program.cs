@@ -1,6 +1,8 @@
 ﻿using System;
+using Xadrez.JogoXadrez;
 using Xadrez.Tabuleiro;
 using Xadrez.XadrezPecas;
+using Xadrez;
 
 namespace Xadrez
 {
@@ -10,15 +12,24 @@ namespace Xadrez
         {
             try
             {
-                Posicao P;
+                PartidaDeXadrez partida = new PartidaDeXadrez();
 
-                tabuleiro tab = new tabuleiro(8, 8);
+                while (!partida.terminada)
+                {
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
 
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(3, 2));
-                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 3));
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
 
-                Tela.imprimirTabuleiro(tab);
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+
+                    partida.executarMovimento(origem, destino);
+                }
+
+                Tela.imprimirTabuleiro(partida.tab);
             }
             catch(TabuleiroException e)
             {
