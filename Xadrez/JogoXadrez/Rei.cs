@@ -11,7 +11,7 @@ namespace Xadrez.XadrezPecas
 
         public override string ToString()
         {
-            return "R";
+            return " R ";
         }
 
         private bool PodeMover(Posicao pos)

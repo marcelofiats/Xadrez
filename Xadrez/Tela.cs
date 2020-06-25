@@ -60,7 +60,7 @@ namespace Xadrez
         {
             if (peca == null)
             {
-                Console.Write("- ");
+                Console.Write(" - ");
             }
             else
             {
@@ -75,6 +75,7 @@ namespace Xadrez
                     Console.Write(peca);
                     Console.ForegroundColor = aux;
                 }
+               
             }
         }
     }

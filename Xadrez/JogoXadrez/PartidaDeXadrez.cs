@@ -8,8 +8,8 @@ namespace Xadrez.JogoXadrez
     class PartidaDeXadrez
     {
         public tabuleiro tab { get; private set; }
-        private int turno;
-        private Cor JogadorAtual;
+        public int turno { get; private set; }
+        public Cor JogadorAtual { get; private set; }
         public bool terminada { get; private set; }
 
         public PartidaDeXadrez()
@@ -28,6 +28,49 @@ namespace Xadrez.JogoXadrez
             Peca pecaCapturada = tab.retirarPeca(destino);
             tab.colocarPeca(p, destino);
         }
+        public void realizaJogada(Posicao origem, Posicao destino)
+        {
+            executarMovimento(origem, destino);
+            turno++;
+            mudaJogador();
+        }
+
+        public void validarPosicaoDeOrigem(Posicao pos)
+        {
+            if(tab.peca(pos) == null)
+            {
+                throw new TabuleiroException("não existe peça na posição de origem escolhida!!!");
+            }
+            if(JogadorAtual != tab.peca(pos).cor)
+            {
+                throw new TabuleiroException("a peca seecionada não é sua!!!");
+            }
+            if (!tab.peca(pos).existeMovimentoPossiveis())
+            {
+                throw new TabuleiroException("não existe movimento possivel para essa peça!!!");
+            }
+        }
+
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            if (!tab.peca(origem).podeMoverPara(destino))
+            {
+                throw new TabuleiroException("Possicao de destino invalida!!!");
+            }
+        }
+
+        private void mudaJogador()
+        {
+            if(JogadorAtual == Cor.Branca)
+            {
+                JogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                JogadorAtual = Cor.Branca;
+            }
+        }
+
         private void colocarPecas()
         {
             tab.colocarPeca(new Torre(tab, Cor.Branca), new PosicaoXadrez('a', 1).toPosicao());
